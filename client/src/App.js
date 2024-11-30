@@ -5,7 +5,8 @@ import TextEditor from "./components/TextEditor";
 import AddUser from "./components/AddUser";
 import Navbar from "./components/Navbar";
 import SentNewsletters from "./components/SentNewsletters";
-import TipTap from "./components/MailEditor";
+import MailEditor from "./components/MailEditor";
+import Unsubscribe from './components/Unsubscribe'
 
 export const ENDPOINT = "http://localhost:5000";
 
@@ -21,7 +22,8 @@ const App = () => {
           <Route path="/new" element={<TextEditor />} />
           <Route path="/" element={<AddUser />} />
           <Route path="/mynewsletters" element={<SentNewsletters />} />
-          <Route path="/texteditor" element={<TipTap />} />
+          <Route path="/texteditor" element={<MailEditor />} />
+          <Route path="/unsubscribe" element={<Unsubscribe />} />
         </Routes>
       </div>
     </>

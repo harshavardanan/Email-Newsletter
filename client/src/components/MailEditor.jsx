@@ -8,6 +8,9 @@ function MailEditor() {
   const [heading, setHeading] = useState("");
   const [content, setContent] = useState("");
   const [alert, setAlert] = useState(null);
+  const [addUnsubscribe, setAddUnsubscribe] = useState(false);
+
+  const unsubscribeButton = `<p>Click here to unsubscribe from the mailing list <a href="http://localhost:3000/unsubscribe">unsubscribe</a></p>`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,7 +18,7 @@ function MailEditor() {
     await axios
       .post(`${ENDPOINT}/send-newsletter`, {
         subject: heading,
-        body: content,
+        body: content + (addUnsubscribe ? unsubscribeButton : ""),
       })
       .then((response) => {
         console.log("Email sent successfully:", response);
@@ -33,6 +36,10 @@ function MailEditor() {
           message: "Error sending newsletter. Please try again.",
         });
       });
+  };
+
+  const handleCheckboxChange = (e) => {
+    setAddUnsubscribe(e.target.checked);
   };
 
   const handlePreview = () => {
@@ -100,20 +107,31 @@ function MailEditor() {
 
           <Editor value={content} content={setContent} />
 
-          <div className="flex justify-between mt-4">
-            <button
-              type="submit"
-              className="bg-purple-400 block w-full rounded py-4 text-white font-bold shadow"
-            >
-              Send Newsletter
-            </button>
-            <button
-              type="button"
-              onClick={handlePreview}
-              className="bg-blue-400 block w-full rounded py-4 text-white font-bold shadow ml-4"
-            >
-              Preview
-            </button>
+          <div className="flex justify-between items-center mt-4">
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                checked={addUnsubscribe}
+                onChange={handleCheckboxChange}
+                className="form-checkbox h-4 w-4 text-purple-600 transition duration-150 ease-in-out"
+              />
+              <span className="text-gray-700 text-sm">Add Unsubscribe</span>
+            </label>
+            <div className="flex space-x-4">
+              <button
+                type="submit"
+                className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+              >
+                Send Newsletter
+              </button>
+              <button
+                type="button"
+                onClick={handlePreview}
+                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              >
+                Preview
+              </button>
+            </div>
           </div>
         </form>
       </div>

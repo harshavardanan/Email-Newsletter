@@ -17,7 +17,7 @@ const Users = () => {
 
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, [users]);
 
   const deleteData = async (id) => {
     try {

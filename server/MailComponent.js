@@ -4,7 +4,7 @@ const { red, bold } = require("consoleartist");
 
 // Create a transporter object using SMTP transport
 const transporter = nodemailer.createTransport({
-  service: "gmail", // true for 465, false for other ports
+  service: "gmail", 
   auth: {
     user: process.env.EMAIL,
     pass: process.env.EMAIL_PASSWORD,

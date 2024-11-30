@@ -61,6 +61,7 @@ const AddUser = () => {
           <input
             id="name"
             type="text"
+            autoComplete="off"
             placeholder="Enter Fullname"
             onChange={(e) => setName(e.target.value)}
             value={name}
@@ -76,6 +77,7 @@ const AddUser = () => {
             id="email"
             type="email"
             placeholder="someone@example.com"
+            autoComplete="off"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"

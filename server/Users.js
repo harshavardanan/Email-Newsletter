@@ -44,6 +44,17 @@ router.delete("/:id", (req, res) => {
     return res.json(result);
   });
 });
+router.delete("/:email", (req, res) => {
+  const { email } = req.params;
+  const dbQuery = "DELETE FROM users WHERE email=?";
+  db.query(dbQuery, [email], (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    return res.json(result);
+  });
+});
+
 router.patch("/:id", (req, res) => {
   const { id } = req.params;
   const { name, email } = req.body;
